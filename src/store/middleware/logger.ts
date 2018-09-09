@@ -5,7 +5,7 @@ import Listener from '../../app/Listeners/Listener';
 
 // tslint:disable no-console
 
-export default (store: Store) => (next: Dispatch) => async (action: Action) => {
+export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action) => {
     if (!(action instanceof Job) && !(action instanceof Listener)) {
         let result: any;
         let style: string;

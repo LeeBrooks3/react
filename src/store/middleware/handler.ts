@@ -35,7 +35,7 @@ async function handle(action: Job | Listener, store: Store, result: () => Promis
         });
 }
 
-export default (store: Store) => (next: Dispatch) => async (action: Action | Event | Job) => {
+export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action | Event | Job) => {
     let result: any;
 
     if (action instanceof Event) {
