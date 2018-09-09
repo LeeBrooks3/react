@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux';
-import Awaitable from '../Utilities/Awaitable';
+import { Action, Dispatch } from 'redux';
 import EventInterface from '../Events/EventInterface';
-export default interface ListenerInterface<StateInterface = any> extends Awaitable {
+import Awaitable from '../Utilities/Awaitable';
+export default interface ListenerInterface<StateInterface = any> extends Action, Awaitable {
     /**
      * Handles the event.
      *

@@ -54,6 +54,7 @@ var Redirect = /** @class */ (function (_super) {
      */
     function Redirect(url) {
         var _this = _super.call(this) || this;
+        _this.await = true;
         _this.url = url;
         return _this;
     }

@@ -55,7 +55,7 @@ function handle(action, store, result) {
                 case 0:
                     name = action.constructor.name;
                     store.dispatch(new Event_1["default"](name + "@pending"));
-                    if (!action.await) return [3 /*break*/, 4];
+                    if (!action.shouldAwait()) return [3 /*break*/, 4];
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);

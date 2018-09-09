@@ -1,6 +1,10 @@
 import { Dispatch } from 'redux';
 import Job from './Job';
 export default class Redirect extends Job {
+    readonly await: boolean;
+    /**
+     * The URL to redirect to.
+     */
     protected url: string;
     /**
      * @param {string} url

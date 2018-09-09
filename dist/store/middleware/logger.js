@@ -46,39 +46,29 @@ var _this = this;
 exports.__esModule = true;
 var _ = require("lodash");
 var Event_1 = require("../../app/Events/Event");
-var Job_1 = require("../../app/Jobs/Job");
-var Listener_1 = require("../../app/Listeners/Listener");
 // tslint:disable no-console
 exports["default"] = (function (store) { return function (next) { return function (action) { return __awaiter(_this, void 0, void 0, function () {
-    var result, style, split, type, state, defaultStyle, props;
+    var result, split, type, state, defaultStyle, props, style;
     return __generator(this, function (_a) {
-        if (!(action instanceof Job_1["default"]) && !(action instanceof Listener_1["default"])) {
+        if (action instanceof Event_1["default"]) {
             result = void 0;
-            style = void 0;
-            split = void 0;
-            type = void 0;
-            state = void 0;
+            split = action.type.split('@');
+            type = split[0];
+            state = split.length > 1 ? split[1] : undefined;
             defaultStyle = 'color: #868e96;';
             props = __assign({}, action);
-            if (action instanceof Event_1["default"]) {
-                split = action.type.split('@');
-                type = split[0];
-                state = split.length > 1 ? split[1] : undefined;
-            }
-            else {
-                type = action.type;
-            }
             _.unset(props, 'type');
-            if (state === 'pending') {
-                style = 'color: #868e96;';
-            }
-            else if (state === 'resolved') {
-                style = 'color: #28a745;';
-            }
-            else if (state === 'rejected') {
-                style = 'color: #dc3545;';
-            }
-            if (state && style) {
+            if (state) {
+                style = void 0;
+                if (state === 'pending') {
+                    style = 'color: #868e96;';
+                }
+                else if (state === 'resolved') {
+                    style = 'color: #28a745;';
+                }
+                else if (state === 'rejected') {
+                    style = 'color: #dc3545;';
+                }
                 console.group(type + " %c(" + state + ")", style);
                 console.info('%cprops', defaultStyle, props);
                 result = next(action);
@@ -86,13 +76,9 @@ exports["default"] = (function (store) { return function (next) { return functio
                 console.groupEnd();
             }
             else {
-                console.group(type + " %c(before)", defaultStyle);
+                console.group(type);
                 console.info('%cprops', defaultStyle, props);
-                console.info('%cstate', defaultStyle, store.getState());
-                console.groupEnd();
                 result = next(action);
-                console.group(type + " %c(after)", defaultStyle);
-                console.info('%cprops', defaultStyle, props);
                 console.info('%cstate', defaultStyle, store.getState());
                 console.groupEnd();
             }

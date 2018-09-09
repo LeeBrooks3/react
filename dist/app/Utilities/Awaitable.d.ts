@@ -1,3 +1,6 @@
 export default interface Awaitable {
-    readonly await: boolean;
+    /**
+     * Returns whether the asynchronous action should be awaited.
+     */
+    shouldAwait(): boolean;
 }

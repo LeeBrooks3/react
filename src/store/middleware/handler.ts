@@ -2,17 +2,17 @@ import { Action, Dispatch, Store } from 'redux';
 import Event from '../../app/Events/Event';
 import EventInterface from '../../app/Events/EventInterface';
 import Job from '../../app/Jobs/Job';
-import Listener from '../../app/Listeners/Listener';
+import JobInterface from '../../app/Jobs/JobInterface';
 import ListenerInterface from '../../app/Listeners/ListenerInterface';
 
 // tslint:disable no-console
 
-async function handle(action: Job | Listener, store: Store, result: () => Promise<void>): Promise<void> {
+async function handle(action: JobInterface | ListenerInterface, store: Store, result: () => Promise<void>): Promise<void> { // tslint:disable-line max-line-length
     const name: string = action.constructor.name;
 
     store.dispatch(new Event(`${name}@pending`));
 
-    if (action.await) {
+    if (action.shouldAwait()) {
         try {
             await result();
 
@@ -35,7 +35,7 @@ async function handle(action: Job | Listener, store: Store, result: () => Promis
         });
 }
 
-export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action | Event | Job) => {
+export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action) => {
     let result: any;
 
     if (action instanceof Event) {
