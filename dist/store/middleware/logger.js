@@ -45,20 +45,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 exports.__esModule = true;
 var _ = require("lodash");
+var Event_1 = require("../../app/Events/Event");
 var Job_1 = require("../../app/Jobs/Job");
 var Listener_1 = require("../../app/Listeners/Listener");
 // tslint:disable no-console
 exports["default"] = (function (store) { return function (next) { return function (action) { return __awaiter(_this, void 0, void 0, function () {
-    var result, style, defaultStyle, split, type, state, props;
+    var result, style, split, type, state, defaultStyle, props;
     return __generator(this, function (_a) {
         if (!(action instanceof Job_1["default"]) && !(action instanceof Listener_1["default"])) {
             result = void 0;
             style = void 0;
+            split = void 0;
+            type = void 0;
+            state = void 0;
             defaultStyle = 'color: #868e96;';
-            split = action.type.split('@');
-            type = split[0];
-            state = split.length > 1 ? split[1] : undefined;
             props = __assign({}, action);
+            if (action instanceof Event_1["default"]) {
+                split = action.type.split('@');
+                type = split[0];
+                state = split.length > 1 ? split[1] : undefined;
+            }
+            else {
+                type = action.type;
+            }
             _.unset(props, 'type');
             if (state === 'pending') {
                 style = 'color: #868e96;';
