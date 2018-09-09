@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import { Action, Dispatch, Store } from 'redux';
+import Event from '../../app/Events/Event';
 import Job from '../../app/Jobs/Job';
 import Listener from '../../app/Listeners/Listener';
 
@@ -9,13 +10,21 @@ export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async 
     if (!(action instanceof Job) && !(action instanceof Listener)) {
         let result: any;
         let style: string;
+        let split: string[];
+        let type: string;
+        let state: string;
         const defaultStyle: string = 'color: #868e96;';
-        const split: string[] = action.type.split('@');
-        const type: string = split[0];
-        const state: string = split.length > 1 ? split[1] : undefined;
         const props: object = {
             ...action,
         };
+
+        if (action instanceof Event) {
+            split = action.type.split('@');
+            type = split[0];
+            state = split.length > 1 ? split[1] : undefined;
+        } else {
+            type = action.type;
+        }
 
         _.unset(props, 'type');
 
