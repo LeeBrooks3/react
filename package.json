@@ -9,6 +9,7 @@
   "author": "Lee Brooks <leebrooks93@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@leebrooks3/typescript": "git+https://git@github.com/leebrooks3/typescript.git",
     "@types/history": "^4.7.0",
     "@types/node": "^10.9.4",
     "@types/react-redux": "^6.0.2",
