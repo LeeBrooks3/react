@@ -3,7 +3,7 @@ exports.__esModule = true;
 var Route = /** @class */ (function () {
     /**
      * @param {string} url
-     * @param {Component} component
+     * @param {ComponentClass} component
      * @param {string[]} middleware
      */
     function Route(url, component, middleware) {

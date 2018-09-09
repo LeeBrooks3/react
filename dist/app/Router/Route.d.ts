@@ -1,13 +1,13 @@
-import { Component } from 'react';
+import { ComponentClass } from 'react';
 export default class Route {
     name: string;
     readonly url: string;
-    readonly component: Component;
+    readonly component: ComponentClass;
     readonly middleware: string[];
     /**
      * @param {string} url
-     * @param {Component} component
+     * @param {ComponentClass} component
      * @param {string[]} middleware
      */
-    constructor(url: string, component: Component, middleware?: string[]);
+    constructor(url: string, component: ComponentClass, middleware?: string[]);
 }
