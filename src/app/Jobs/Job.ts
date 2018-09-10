@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import JobInterface from './JobInterface';
 
-export default abstract class Job<StateInterface = any> implements JobInterface<StateInterface> {
+export default abstract class Job<T = void, StateInterface = any> implements JobInterface<T, StateInterface> {
     /**
      * The type of the job.
      *
@@ -24,7 +24,7 @@ export default abstract class Job<StateInterface = any> implements JobInterface<
     }
 
     /** @inheritDoc */
-    public abstract async handle(dispatch: Dispatch, getState: () => StateInterface): Promise<void>;
+    public abstract async handle(dispatch: Dispatch, getState: () => StateInterface): Promise<T>;
 
     /** @inheritDoc */
     public shouldAwait(): boolean {

@@ -1,34 +1,32 @@
 import * as _ from 'lodash';
 import { Action, Dispatch, Store } from 'redux';
-import Event from '../../app/Events/Event';
+import Event, { PENDING, REJECTED, RESOLVED } from '../../app/Events/Event';
 
 // tslint:disable no-console
 
 export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action) => {
     if (action instanceof Event) {
         let result: any;
-        const split: string[] = action.type.split('@');
-        const type: string = split[0];
-        const state: string = split.length > 1 ? split[1] : undefined;
         const defaultStyle: string = 'color: #868e96;';
         const props: object = {
             ...action,
         };
 
         _.unset(props, 'type');
+        _.unset(props, 'status');
 
-        if (state) {
+        if (action.status) {
             let style: string;
 
-            if (state === 'pending') {
+            if (action.status === PENDING) {
                 style = 'color: #868e96;';
-            } else if (state === 'resolved') {
+            } else if (action.status === RESOLVED) {
                 style = 'color: #28a745;';
-            } else if (state === 'rejected') {
+            } else if (action.status === REJECTED) {
                 style = 'color: #dc3545;';
             }
 
-            console.group(`${type} %c(${state})`, style);
+            console.group(`${action.type} %c(${action.status})`, style);
             console.info('%cprops', defaultStyle, props);
 
             result = next(action);
@@ -36,7 +34,7 @@ export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async 
             console.info('%cstate', defaultStyle, store.getState());
             console.groupEnd();
         } else {
-            console.group(type);
+            console.group(action.type);
             console.info('%cprops', defaultStyle, props);
 
             result = next(action);

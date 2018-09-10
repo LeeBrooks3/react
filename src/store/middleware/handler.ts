@@ -1,5 +1,5 @@
 import { Action, Dispatch, Store } from 'redux';
-import Event from '../../app/Events/Event';
+import Event, { PENDING, REJECTED, RESOLVED } from '../../app/Events/Event';
 import EventInterface from '../../app/Events/EventInterface';
 import Job from '../../app/Jobs/Job';
 import JobInterface from '../../app/Jobs/JobInterface';
@@ -10,17 +10,17 @@ import ListenerInterface from '../../app/Listeners/ListenerInterface';
 async function handle(action: JobInterface | ListenerInterface, store: Store, result: () => Promise<void>): Promise<void> { // tslint:disable-line max-line-length
     const name: string = action.constructor.name;
 
-    store.dispatch(new Event(`${name}@pending`));
+    store.dispatch(new Event(name, PENDING));
 
     if (action.shouldAwait()) {
         try {
             await result();
 
-            store.dispatch(new Event(`${name}@resolved`));
+            store.dispatch(new Event(name, RESOLVED));
 
             return Promise.resolve();
         } catch (e) {
-            store.dispatch(new Event(`${name}@rejected`));
+            store.dispatch(new Event(name, REJECTED));
 
             return Promise.reject(e);
         }
@@ -28,10 +28,10 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
 
     return result()
         .then(() => {
-            store.dispatch(new Event(`${name}@resolved`));
+            store.dispatch(new Event(name, RESOLVED));
         })
         .catch((e: Error) => {
-            store.dispatch(new Event(`${name}@rejected`));
+            store.dispatch(new Event(name, REJECTED));
         });
 }
 

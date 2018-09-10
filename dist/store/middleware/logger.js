@@ -48,35 +48,33 @@ var _ = require("lodash");
 var Event_1 = require("../../app/Events/Event");
 // tslint:disable no-console
 exports["default"] = (function (store) { return function (next) { return function (action) { return __awaiter(_this, void 0, void 0, function () {
-    var result, split, type, state, defaultStyle, props, style;
+    var result, defaultStyle, props, style;
     return __generator(this, function (_a) {
         if (action instanceof Event_1["default"]) {
             result = void 0;
-            split = action.type.split('@');
-            type = split[0];
-            state = split.length > 1 ? split[1] : undefined;
             defaultStyle = 'color: #868e96;';
             props = __assign({}, action);
             _.unset(props, 'type');
-            if (state) {
+            _.unset(props, 'status');
+            if (action.status) {
                 style = void 0;
-                if (state === 'pending') {
+                if (action.status === Event_1.PENDING) {
                     style = 'color: #868e96;';
                 }
-                else if (state === 'resolved') {
+                else if (action.status === Event_1.RESOLVED) {
                     style = 'color: #28a745;';
                 }
-                else if (state === 'rejected') {
+                else if (action.status === Event_1.REJECTED) {
                     style = 'color: #dc3545;';
                 }
-                console.group(type + " %c(" + state + ")", style);
+                console.group(action.type + " %c(" + action.status + ")", style);
                 console.info('%cprops', defaultStyle, props);
                 result = next(action);
                 console.info('%cstate', defaultStyle, store.getState());
                 console.groupEnd();
             }
             else {
-                console.group(type);
+                console.group(action.type);
                 console.info('%cprops', defaultStyle, props);
                 result = next(action);
                 console.info('%cstate', defaultStyle, store.getState());

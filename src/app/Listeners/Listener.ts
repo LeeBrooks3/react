@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import EventInterface from '../Events/EventInterface';
 import ListenerInterface from './ListenerInterface';
 
-export default abstract class Listener<StateInterface = any> implements ListenerInterface<StateInterface> {
+export default abstract class Listener<T = void, StateInterface = any> implements ListenerInterface<T, StateInterface> {
     /**
      * The type of the listener.
      *
@@ -25,7 +25,7 @@ export default abstract class Listener<StateInterface = any> implements Listener
     }
 
     /** @inheritDoc */
-    public abstract async handle(event: EventInterface, dispatch: Dispatch, getState: () => StateInterface): Promise<void>; // tslint:disable-line max-line-length
+    public abstract async handle(event: EventInterface, dispatch: Dispatch, getState: () => StateInterface): Promise<T>; // tslint:disable-line max-line-length
 
     /** @inheritDoc */
     public shouldAwait(): boolean {

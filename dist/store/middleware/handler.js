@@ -54,7 +54,7 @@ function handle(action, store, result) {
             switch (_a.label) {
                 case 0:
                     name = action.constructor.name;
-                    store.dispatch(new Event_1["default"](name + "@pending"));
+                    store.dispatch(new Event_1["default"](name, Event_1.PENDING));
                     if (!action.shouldAwait()) return [3 /*break*/, 4];
                     _a.label = 1;
                 case 1:
@@ -62,17 +62,17 @@ function handle(action, store, result) {
                     return [4 /*yield*/, result()];
                 case 2:
                     _a.sent();
-                    store.dispatch(new Event_1["default"](name + "@resolved"));
+                    store.dispatch(new Event_1["default"](name, Event_1.RESOLVED));
                     return [2 /*return*/, Promise.resolve()];
                 case 3:
                     e_1 = _a.sent();
-                    store.dispatch(new Event_1["default"](name + "@rejected"));
+                    store.dispatch(new Event_1["default"](name, Event_1.REJECTED));
                     return [2 /*return*/, Promise.reject(e_1)];
                 case 4: return [2 /*return*/, result()
                         .then(function () {
-                        store.dispatch(new Event_1["default"](name + "@resolved"));
+                        store.dispatch(new Event_1["default"](name, Event_1.RESOLVED));
                     })["catch"](function (e) {
-                        store.dispatch(new Event_1["default"](name + "@rejected"));
+                        store.dispatch(new Event_1["default"](name, Event_1.REJECTED));
                     })];
             }
         });
