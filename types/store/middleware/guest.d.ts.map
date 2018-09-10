@@ -1,0 +1,1 @@
+{"version":3,"file":"guest.d.ts","sourceRoot":"","sources":["../../../src/store/middleware/guest.ts"],"names":[],"mappings":"AACA,OAAO,EAAoB,UAAU,EAAS,MAAM,OAAO,CAAC;AAE5D,OAAO,YAAY,MAAM,+BAA+B,CAAC;AAEzD,eAAO,MAAM,KAAK,EAAE,MAAgB,CAAC;AAErC,8CAAsC,YAAY,EAAE,YAAY,GAAG,UAAU,CA0B5E"}
