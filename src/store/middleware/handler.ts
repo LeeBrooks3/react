@@ -8,19 +8,19 @@ import ListenerInterface from '../../app/Listeners/ListenerInterface';
 // tslint:disable no-console
 
 async function handle(action: JobInterface | ListenerInterface, store: Store, result: () => Promise<void>): Promise<void> { // tslint:disable-line max-line-length
-    const name: string = action.constructor.name;
+    const type: string = action.type;
 
-    store.dispatch(new Event(name, PENDING));
+    store.dispatch(new Event(type, PENDING));
 
     if (action.shouldAwait()) {
         try {
             await result();
 
-            store.dispatch(new Event(name, RESOLVED));
+            store.dispatch(new Event(type, RESOLVED));
 
             return Promise.resolve();
         } catch (e) {
-            store.dispatch(new Event(name, REJECTED));
+            store.dispatch(new Event(type, REJECTED));
 
             return Promise.reject(e);
         }
@@ -28,10 +28,10 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
 
     return result()
         .then(() => {
-            store.dispatch(new Event(name, RESOLVED));
+            store.dispatch(new Event(type, RESOLVED));
         })
         .catch((e: Error) => {
-            store.dispatch(new Event(name, REJECTED));
+            store.dispatch(new Event(type, REJECTED));
         });
 }
 

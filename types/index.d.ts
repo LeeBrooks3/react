@@ -2,6 +2,8 @@ export { default as Cache } from './app/Cache/Repository';
 export { default as CacheInterface } from './app/Cache/Repository';
 export { default as Config } from './app/Config/Repository';
 export { default as ConfigInterface } from './app/Config/Repository';
+export { default as Container } from './app/Container/Container';
+export { default as ContainerInterface } from './app/Container/ContainerInterface';
 export { default as Event } from './app/Events/Event';
 export { default as EventInterface } from './app/Events/EventInterface';
 export { default as Job } from './app/Jobs/Job';

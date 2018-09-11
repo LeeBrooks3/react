@@ -49,12 +49,12 @@ var Job_1 = require("../../app/Jobs/Job");
 // tslint:disable no-console
 function handle(action, store, result) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, e_1;
+        var type, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    name = action.constructor.name;
-                    store.dispatch(new Event_1["default"](name, Event_1.PENDING));
+                    type = action.type;
+                    store.dispatch(new Event_1["default"](type, Event_1.PENDING));
                     if (!action.shouldAwait()) return [3 /*break*/, 4];
                     _a.label = 1;
                 case 1:
@@ -62,17 +62,17 @@ function handle(action, store, result) {
                     return [4 /*yield*/, result()];
                 case 2:
                     _a.sent();
-                    store.dispatch(new Event_1["default"](name, Event_1.RESOLVED));
+                    store.dispatch(new Event_1["default"](type, Event_1.RESOLVED));
                     return [2 /*return*/, Promise.resolve()];
                 case 3:
                     e_1 = _a.sent();
-                    store.dispatch(new Event_1["default"](name, Event_1.REJECTED));
+                    store.dispatch(new Event_1["default"](type, Event_1.REJECTED));
                     return [2 /*return*/, Promise.reject(e_1)];
                 case 4: return [2 /*return*/, result()
                         .then(function () {
-                        store.dispatch(new Event_1["default"](name, Event_1.RESOLVED));
+                        store.dispatch(new Event_1["default"](type, Event_1.RESOLVED));
                     })["catch"](function (e) {
-                        store.dispatch(new Event_1["default"](name, Event_1.REJECTED));
+                        store.dispatch(new Event_1["default"](type, Event_1.REJECTED));
                     })];
             }
         });
