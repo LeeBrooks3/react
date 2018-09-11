@@ -1,18 +1,10 @@
 export default interface ContainerInterface {
     /**
-     * Returns the value for the given key from the container.
+     * Makes an instance of the class defined by a factory with the given key.
      *
      * @param {string} key
      * @return {*}
      */
-    get(key: string): any;
-    /**
-     * Sets the value for the given key in the container.
-     *
-     * @param {string} key
-     * @param {*} value
-     * @return {void}
-     */
-    set(key: string, value: any): void;
+    make<T>(key: string): T;
 }
 //# sourceMappingURL=ContainerInterface.d.ts.map

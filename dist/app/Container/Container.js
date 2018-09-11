@@ -9,12 +9,9 @@ var Container = /** @class */ (function () {
         this.map = map;
     }
     /** @inheritDoc */
-    Container.prototype.get = function (key) {
-        return _.get(this.map, key);
-    };
-    /** @inheritDoc */
-    Container.prototype.set = function (key, value) {
-        _.set(this.map, key, value);
+    Container.prototype.make = function (key) {
+        var factory = _.get(this.map, key);
+        return factory(this);
     };
     return Container;
 }());

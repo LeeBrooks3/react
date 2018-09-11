@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import ContainerInterface from './ContainerInterface';
+import { Factory } from './Factory';
 
 export default class Container implements ContainerInterface {
     protected map: object;
@@ -12,12 +13,9 @@ export default class Container implements ContainerInterface {
     }
 
     /** @inheritDoc */
-    public get(key: string): any {
-        return _.get(this.map, key);
-    }
+    public make<T>(key: string): T {
+        const factory: Factory<T> = _.get(this.map, key);
 
-    /** @inheritDoc */
-    public set(key: string, value: any): void {
-        _.set(this.map, key, value);
+        return factory(this);
     }
 }

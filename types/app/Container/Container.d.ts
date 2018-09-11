@@ -6,8 +6,6 @@ export default class Container implements ContainerInterface {
      */
     constructor(map: object);
     /** @inheritDoc */
-    get(key: string): any;
-    /** @inheritDoc */
-    set(key: string, value: any): void;
+    make<T>(key: string): T;
 }
 //# sourceMappingURL=Container.d.ts.map
