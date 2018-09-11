@@ -50,19 +50,15 @@ var Job_1 = require("./Job");
 var Redirect = /** @class */ (function (_super) {
     __extends(Redirect, _super);
     /**
-     * @param {string} url
+     * Sets the URL to redirect to.
      */
     function Redirect(url) {
         var _this = _super.call(this) || this;
-        _this.await = true;
         _this.url = url;
         return _this;
     }
     /**
      * Redirects to the url given on construction.
-     *
-     * @param {Dispatch} dispatch
-     * @param {Function} getState
      */
     Redirect.prototype.handle = function (dispatch, getState) {
         return __awaiter(this, void 0, void 0, function () {

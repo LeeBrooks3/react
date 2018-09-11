@@ -1,25 +1,15 @@
 export default interface RepositoryInterface {
     /**
      * Returns the value for the given key from storage.
-     *
-     * @param {string} key
-     * @return {*}
      */
-    get(key: string): any;
+    get<T = any>(key: string): Promise<T>;
     /**
      * Sets the value for the given key in storage.
-     *
-     * @param {string} key
-     * @param {*} value
-     * @return {void}
      */
-    set(key: string, value: any): void;
+    set<T = any>(key: string, value: T): Promise<void>;
     /**
      * Removes the value for the given key from storage.
-     *
-     * @param {string} key
-     * @return {void}
      */
-    remove(key: string): void;
+    remove(key: string): Promise<void>;
 }
 //# sourceMappingURL=RepositoryInterface.d.ts.map

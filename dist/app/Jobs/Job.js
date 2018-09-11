@@ -7,8 +7,6 @@ var Job = /** @class */ (function () {
     function Job() {
         /**
          * Whether the job should be ran asynchronously.
-         *
-         * @var {boolean}
          */
         this.queue = false;
         this.type = this.constructor.name;

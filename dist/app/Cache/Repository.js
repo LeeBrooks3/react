@@ -1,23 +1,23 @@
 "use strict";
 exports.__esModule = true;
 var Repository = /** @class */ (function () {
-    /**
-     * @param {object} config
-     */
-    function Repository(config) {
-        this.config = config;
+    function Repository() {
     }
     /** @inheritDoc */
     Repository.prototype.get = function (key) {
-        return localStorage.getItem(key);
+        var value = localStorage.getItem(key);
+        return Promise.resolve(value);
     };
     /** @inheritDoc */
     Repository.prototype.set = function (key, value) {
-        localStorage.setItem(key, value);
+        var json = JSON.stringify(value);
+        localStorage.setItem(key, json);
+        return Promise.resolve();
     };
     /** @inheritDoc */
     Repository.prototype.remove = function (key) {
         localStorage.removeItem(key);
+        return Promise.resolve();
     };
     return Repository;
 }());

@@ -2,9 +2,7 @@
 exports.__esModule = true;
 var Route = /** @class */ (function () {
     /**
-     * @param {string} url
-     * @param {*} component
-     * @param {string[]} middleware
+     * Sets the route url, component and middleware.
      */
     function Route(url, component, middleware) {
         if (middleware === void 0) { middleware = []; }

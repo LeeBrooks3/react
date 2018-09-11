@@ -5,19 +5,25 @@ export default class RouteManager {
     public routes: Route[];
 
     /**
-     * @param {Route[]} routes
+     * Sets the routes.
      */
     public constructor(routes: Route[]) {
         this.setRoutes(routes);
     }
 
     /**
-     * Sets the routes.
-     *
-     * @param {object} routeMap
-     * @return {void}
+     * Gets the route at the given key.
      */
-    public setRoutes(routeMap: object): void {
+    public getCurrentRoute(location: Location): Route {
+        return this.routes.find((route: Route) => {
+            return route.url === location.pathname;
+        });
+    }
+
+    /**
+     * Transforms the routes from an object map to an array.
+     */
+    private setRoutes(routeMap: object): void {
         function loop(routes: Route[], object: object, prefix: string = ''): void {
             _.keys(object).forEach((key: string) => {
                 const routeKey: string = `${prefix}${key}`;
@@ -34,16 +40,5 @@ export default class RouteManager {
         }
 
         loop(this.routes, routeMap);
-    }
-
-    /**
-     * Gets the route at the given key.
-     *
-     * @return {Route}
-     */
-    public getCurrentRoute(location: Location): Route {
-        return this.routes.find((route: Route) => {
-            return route.url === location.pathname;
-        });
     }
 }

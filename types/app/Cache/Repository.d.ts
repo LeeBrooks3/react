@@ -1,15 +1,10 @@
 import RepositoryInterface from './RepositoryInterface';
 export default class Repository implements RepositoryInterface {
-    protected config: object;
-    /**
-     * @param {object} config
-     */
-    constructor(config: object);
     /** @inheritDoc */
-    get(key: string): any;
+    get<T = any>(key: string): Promise<T>;
     /** @inheritDoc */
-    set(key: string, value: any): void;
+    set<T = any>(key: string, value: T): Promise<void>;
     /** @inheritDoc */
-    remove(key: string): void;
+    remove(key: string): Promise<void>;
 }
 //# sourceMappingURL=Repository.d.ts.map

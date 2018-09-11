@@ -3,7 +3,7 @@ exports.__esModule = true;
 var _ = require("lodash");
 var Repository = /** @class */ (function () {
     /**
-     * @param {object} config
+     * Sets the config map.
      */
     function Repository(config) {
         this.config = config;

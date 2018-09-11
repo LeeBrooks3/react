@@ -5,11 +5,7 @@ export declare const PENDING: string;
 export declare const RESOLVED: string;
 export declare const REJECTED: string;
 export default class Event implements EventInterface {
-    /**
-     * The type of the event.
-     *
-     * @var {string}
-     */
+    /** @inheritDoc */
     readonly type: string;
     /** @inheritDoc */
     readonly status: string;

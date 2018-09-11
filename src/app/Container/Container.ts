@@ -3,10 +3,13 @@ import ContainerInterface from './ContainerInterface';
 import { Factory } from './Factory';
 
 export default class Container implements ContainerInterface {
+    /**
+     * The class map.
+     */
     protected map: object;
 
     /**
-     * @param {object} map
+     * Sets the class map.
      */
     public constructor(map: object) {
         this.map = map;

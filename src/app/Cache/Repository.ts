@@ -1,27 +1,26 @@
 import RepositoryInterface from './RepositoryInterface';
 
 export default class Repository implements RepositoryInterface {
-    protected config: object;
+    /** @inheritDoc */
+    public get<T = any>(key: string): Promise<T> {
+        const value: any = localStorage.getItem(key);
 
-    /**
-     * @param {object} config
-     */
-    public constructor(config: object) {
-        this.config = config;
+        return Promise.resolve(value);
     }
 
     /** @inheritDoc */
-    public get(key: string): any {
-        return localStorage.getItem(key);
+    public set<T = any>(key: string, value: T): Promise<void> {
+        const json: string = JSON.stringify(value);
+
+        localStorage.setItem(key, json);
+
+        return Promise.resolve();
     }
 
     /** @inheritDoc */
-    public set(key: string, value: any): void {
-        localStorage.setItem(key, value);
-    }
-
-    /** @inheritDoc */
-    public remove(key: string): void {
+    public remove(key: string): Promise<void> {
         localStorage.removeItem(key);
+
+        return Promise.resolve();
     }
 }

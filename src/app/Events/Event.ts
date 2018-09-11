@@ -7,11 +7,7 @@ export const RESOLVED: string = 'resolved';
 export const REJECTED: string = 'rejected';
 
 export default class Event implements EventInterface {
-    /**
-     * The type of the event.
-     *
-     * @var {string}
-     */
+    /** @inheritDoc */
     public readonly type: string;
 
     /** @inheritDoc */

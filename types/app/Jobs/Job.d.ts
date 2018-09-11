@@ -1,16 +1,12 @@
 import { Dispatch } from 'redux';
 import JobInterface from './JobInterface';
-export default abstract class Job<T = void, StateInterface = any> implements JobInterface<T, StateInterface> {
+export default abstract class Job<T = void, S = any> implements JobInterface<T, S> {
     /**
      * The type of the job.
-     *
-     * @var {string}
      */
     readonly type: string;
     /**
      * Whether the job should be ran asynchronously.
-     *
-     * @var {boolean}
      */
     protected readonly queue: boolean;
     /**
@@ -18,7 +14,7 @@ export default abstract class Job<T = void, StateInterface = any> implements Job
      */
     constructor();
     /** @inheritDoc */
-    abstract handle(dispatch: Dispatch, getState: () => StateInterface): Promise<T>;
+    abstract handle(dispatch: Dispatch, getState: () => S): Promise<T>;
     /** @inheritDoc */
     shouldQueue(): boolean;
 }

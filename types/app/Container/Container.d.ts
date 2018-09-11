@@ -1,8 +1,11 @@
 import ContainerInterface from './ContainerInterface';
 export default class Container implements ContainerInterface {
+    /**
+     * The class map.
+     */
     protected map: object;
     /**
-     * @param {object} map
+     * Sets the class map.
      */
     constructor(map: object);
     /** @inheritDoc */

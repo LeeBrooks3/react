@@ -7,8 +7,6 @@ var Listener = /** @class */ (function () {
     function Listener() {
         /**
          * Whether the listener should be ran asynchronously.
-         *
-         * @var {boolean}
          */
         this.queue = false;
         this.type = this.constructor.name;

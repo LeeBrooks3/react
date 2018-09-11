@@ -3,15 +3,13 @@ import { Dispatch } from 'redux';
 import Job from './Job';
 
 export default class Redirect extends Job {
-    public readonly await: boolean = true;
-
     /**
      * The URL to redirect to.
      */
     protected url: string;
 
     /**
-     * @param {string} url
+     * Sets the URL to redirect to.
      */
     public constructor(url: string) {
         super();
@@ -21,9 +19,6 @@ export default class Redirect extends Job {
 
     /**
      * Redirects to the url given on construction.
-     *
-     * @param {Dispatch} dispatch
-     * @param {Function} getState
      */
     public async handle(dispatch: Dispatch, getState: <StateInterface = any>() => StateInterface): Promise<void> {
         await dispatch(push(this.url));

@@ -5,9 +5,7 @@ export default class Route {
     public readonly middleware: string[];
 
     /**
-     * @param {string} url
-     * @param {*} component
-     * @param {string[]} middleware
+     * Sets the route url, component and middleware.
      */
     public constructor(url: string, component: any, middleware: string[] = []) {
         this.url = url;

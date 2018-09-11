@@ -4,16 +4,21 @@ var _ = require("lodash");
 var Route_1 = require("./Route");
 var RouteManager = /** @class */ (function () {
     /**
-     * @param {Route[]} routes
+     * Sets the routes.
      */
     function RouteManager(routes) {
         this.setRoutes(routes);
     }
     /**
-     * Sets the routes.
-     *
-     * @param {object} routeMap
-     * @return {void}
+     * Gets the route at the given key.
+     */
+    RouteManager.prototype.getCurrentRoute = function (location) {
+        return this.routes.find(function (route) {
+            return route.url === location.pathname;
+        });
+    };
+    /**
+     * Transforms the routes from an object map to an array.
      */
     RouteManager.prototype.setRoutes = function (routeMap) {
         function loop(routes, object, prefix) {
@@ -31,16 +36,6 @@ var RouteManager = /** @class */ (function () {
             });
         }
         loop(this.routes, routeMap);
-    };
-    /**
-     * Gets the route at the given key.
-     *
-     * @return {Route}
-     */
-    RouteManager.prototype.getCurrentRoute = function (location) {
-        return this.routes.find(function (route) {
-            return route.url === location.pathname;
-        });
     };
     return RouteManager;
 }());

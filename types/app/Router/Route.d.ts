@@ -4,9 +4,7 @@ export default class Route {
     readonly component: any;
     readonly middleware: string[];
     /**
-     * @param {string} url
-     * @param {*} component
-     * @param {string[]} middleware
+     * Sets the route url, component and middleware.
      */
     constructor(url: string, component: any, middleware?: string[]);
 }
