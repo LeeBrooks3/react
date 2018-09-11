@@ -3,7 +3,8 @@ import RepositoryInterface from './RepositoryInterface';
 export default class Repository implements RepositoryInterface {
     /** @inheritDoc */
     public get<T = any>(key: string): Promise<T> {
-        const value: any = localStorage.getItem(key);
+        const json: string = localStorage.getItem(key);
+        const value: T = JSON.parse(json);
 
         return Promise.resolve(value);
     }

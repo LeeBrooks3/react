@@ -5,7 +5,8 @@ var Repository = /** @class */ (function () {
     }
     /** @inheritDoc */
     Repository.prototype.get = function (key) {
-        var value = localStorage.getItem(key);
+        var json = localStorage.getItem(key);
+        var value = JSON.parse(json);
         return Promise.resolve(value);
     };
     /** @inheritDoc */
