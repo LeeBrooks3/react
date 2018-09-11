@@ -1,9 +1,15 @@
 import ListenerInterface from '../Listeners/ListenerInterface';
 import EventInterface from './EventInterface';
 
-export const PENDING: string = 'pending';
-export const RESOLVED: string = 'resolved';
-export const REJECTED: string = 'rejected';
+const PENDING: string = 'pending';
+const REJECTED: string = 'rejected';
+const RESOLVED: string = 'resolved';
+
+export const status: any = {
+    PENDING,
+    REJECTED,
+    RESOLVED,
+};
 
 export default class Event implements EventInterface {
     /** @inheritDoc */

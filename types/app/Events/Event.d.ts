@@ -1,8 +1,6 @@
 import ListenerInterface from '../Listeners/ListenerInterface';
 import EventInterface from './EventInterface';
-export declare const PENDING: string;
-export declare const RESOLVED: string;
-export declare const REJECTED: string;
+export declare const status: any;
 export default class Event implements EventInterface {
     /** @inheritDoc */
     readonly type: string;

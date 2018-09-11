@@ -1,8 +1,13 @@
 "use strict";
 exports.__esModule = true;
-exports.PENDING = 'pending';
-exports.RESOLVED = 'resolved';
-exports.REJECTED = 'rejected';
+var PENDING = 'pending';
+var REJECTED = 'rejected';
+var RESOLVED = 'resolved';
+exports.status = {
+    PENDING: PENDING,
+    REJECTED: REJECTED,
+    RESOLVED: RESOLVED
+};
 var Event = /** @class */ (function () {
     /**
      * Sets the event type from the constructor name.

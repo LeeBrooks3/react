@@ -1,6 +1,6 @@
 import { Action, Dispatch, Middleware, Store } from 'redux';
 import ContainerInterface from '../../app/Container/ContainerInterface';
-import Event, { PENDING, REJECTED, RESOLVED } from '../../app/Events/Event';
+import Event, { status } from '../../app/Events/Event';
 import EventInterface from '../../app/Events/EventInterface';
 import Job from '../../app/Jobs/Job';
 import JobInterface from '../../app/Jobs/JobInterface';
@@ -11,17 +11,17 @@ import ListenerInterface from '../../app/Listeners/ListenerInterface';
 async function handle(action: JobInterface | ListenerInterface, store: Store, result: () => Promise<void>): Promise<void> { // tslint:disable-line max-line-length
     const type: string = action.type;
 
-    store.dispatch(new Event(type, PENDING));
+    store.dispatch(new Event(type, status.PENDING));
 
     if (!action.shouldQueue()) {
         try {
             const value: any = await result();
 
-            store.dispatch(new Event(type, RESOLVED));
+            store.dispatch(new Event(type, status.RESOLVED));
 
             return Promise.resolve(value);
         } catch (e) {
-            store.dispatch(new Event(type, REJECTED));
+            store.dispatch(new Event(type, status.REJECTED));
 
             return Promise.reject(e);
         }
@@ -29,12 +29,12 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
 
     return result()
         .then((value: any) => {
-            store.dispatch(new Event(type, RESOLVED));
+            store.dispatch(new Event(type, status.RESOLVED));
 
             return value;
         })
         .catch((e: Error) => {
-            store.dispatch(new Event(type, REJECTED));
+            store.dispatch(new Event(type, status.REJECTED));
 
             return e;
         });

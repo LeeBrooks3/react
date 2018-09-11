@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { Action, Dispatch, Store } from 'redux';
-import Event, { PENDING, REJECTED, RESOLVED } from '../../app/Events/Event';
+import Event, { status } from '../../app/Events/Event';
 
 // tslint:disable no-console
 
@@ -18,11 +18,11 @@ export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async 
         if (action.status) {
             let style: string;
 
-            if (action.status === PENDING) {
+            if (action.status === status.PENDING) {
                 style = 'color: #868e96;';
-            } else if (action.status === RESOLVED) {
+            } else if (action.status === status.RESOLVED) {
                 style = 'color: #28a745;';
-            } else if (action.status === REJECTED) {
+            } else if (action.status === status.REJECTED) {
                 style = 'color: #dc3545;';
             }
 

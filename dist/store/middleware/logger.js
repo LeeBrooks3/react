@@ -58,13 +58,13 @@ exports["default"] = (function (store) { return function (next) { return functio
             _.unset(props, 'status');
             if (action.status) {
                 style = void 0;
-                if (action.status === Event_1.PENDING) {
+                if (action.status === Event_1.status.PENDING) {
                     style = 'color: #868e96;';
                 }
-                else if (action.status === Event_1.RESOLVED) {
+                else if (action.status === Event_1.status.RESOLVED) {
                     style = 'color: #28a745;';
                 }
-                else if (action.status === Event_1.REJECTED) {
+                else if (action.status === Event_1.status.REJECTED) {
                     style = 'color: #dc3545;';
                 }
                 console.group(action.type + " %c(" + action.status + ")", style);

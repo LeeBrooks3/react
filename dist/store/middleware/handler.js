@@ -53,7 +53,7 @@ function handle(action, store, result) {
             switch (_a.label) {
                 case 0:
                     type = action.type;
-                    store.dispatch(new Event_1["default"](type, Event_1.PENDING));
+                    store.dispatch(new Event_1["default"](type, Event_1.status.PENDING));
                     if (!!action.shouldQueue()) return [3 /*break*/, 4];
                     _a.label = 1;
                 case 1:
@@ -61,18 +61,18 @@ function handle(action, store, result) {
                     return [4 /*yield*/, result()];
                 case 2:
                     value = _a.sent();
-                    store.dispatch(new Event_1["default"](type, Event_1.RESOLVED));
+                    store.dispatch(new Event_1["default"](type, Event_1.status.RESOLVED));
                     return [2 /*return*/, Promise.resolve(value)];
                 case 3:
                     e_1 = _a.sent();
-                    store.dispatch(new Event_1["default"](type, Event_1.REJECTED));
+                    store.dispatch(new Event_1["default"](type, Event_1.status.REJECTED));
                     return [2 /*return*/, Promise.reject(e_1)];
                 case 4: return [2 /*return*/, result()
                         .then(function (value) {
-                        store.dispatch(new Event_1["default"](type, Event_1.RESOLVED));
+                        store.dispatch(new Event_1["default"](type, Event_1.status.RESOLVED));
                         return value;
                     })["catch"](function (e) {
-                        store.dispatch(new Event_1["default"](type, Event_1.REJECTED));
+                        store.dispatch(new Event_1["default"](type, Event_1.status.REJECTED));
                         return e;
                     })];
             }
