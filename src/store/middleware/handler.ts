@@ -1,4 +1,5 @@
-import { Action, Dispatch, Store } from 'redux';
+import { Action, Dispatch, Middleware, Store } from 'redux';
+import ContainerInterface from '../../app/Container/ContainerInterface';
 import Event, { PENDING, REJECTED, RESOLVED } from '../../app/Events/Event';
 import EventInterface from '../../app/Events/EventInterface';
 import Job from '../../app/Jobs/Job';
@@ -35,26 +36,28 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
         });
 }
 
-export default (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action) => {
-    let result: any;
+export function createHandlerMiddleware(app: ContainerInterface): Middleware {
+    return (store: Store<any, Action>) => (next: Dispatch<Action>) => async (action: Action) => {
+        let result: any;
 
-    if (action instanceof Event) {
-        const event: EventInterface = action;
+        if (action instanceof Event) {
+            const event: EventInterface = action;
 
-        result = next({
-            ...event,
-        });
+            result = next({
+                ...event,
+            });
 
-        const listeners: ListenerInterface[] = event.getListeners();
+            const listeners: ListenerInterface[] = event.getListeners(app);
 
-        for (const listener of listeners) {
-            await handle(listener, store, async () => listener.handle(event, store.dispatch, store.getState));
+            for (const listener of listeners) {
+                await handle(listener, store, async () => listener.handle(event, store.dispatch, store.getState));
+            }
+        } else if (action instanceof Job) {
+            result = await handle(action, store, async () => action.handle(store.dispatch, store.getState));
+        } else {
+            result = next(action);
         }
-    } else if (action instanceof Job) {
-        result = await handle(action, store, async () => action.handle(store.dispatch, store.getState));
-    } else {
-        result = next(action);
-    }
 
-    return result;
-};
+        return result;
+    };
+}

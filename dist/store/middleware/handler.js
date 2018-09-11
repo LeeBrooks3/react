@@ -42,7 +42,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 exports.__esModule = true;
 var Event_1 = require("../../app/Events/Event");
 var Job_1 = require("../../app/Jobs/Job");
@@ -78,54 +77,58 @@ function handle(action, store, result) {
         });
     });
 }
-exports["default"] = (function (store) { return function (next) { return function (action) { return __awaiter(_this, void 0, void 0, function () {
-    var result, event_1, listeners, _loop_1, _i, listeners_1, listener;
+function createHandlerMiddleware(app) {
     var _this = this;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (!(action instanceof Event_1["default"])) return [3 /*break*/, 5];
-                event_1 = action;
-                result = next(__assign({}, event_1));
-                listeners = event_1.getListeners();
-                _loop_1 = function (listener) {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, handle(listener, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                                    return [2 /*return*/, listener.handle(event_1, store.dispatch, store.getState)];
-                                }); }); })];
-                            case 1:
-                                _a.sent();
-                                return [2 /*return*/];
-                        }
-                    });
-                };
-                _i = 0, listeners_1 = listeners;
-                _a.label = 1;
-            case 1:
-                if (!(_i < listeners_1.length)) return [3 /*break*/, 4];
-                listener = listeners_1[_i];
-                return [5 /*yield**/, _loop_1(listener)];
-            case 2:
-                _a.sent();
-                _a.label = 3;
-            case 3:
-                _i++;
-                return [3 /*break*/, 1];
-            case 4: return [3 /*break*/, 8];
-            case 5:
-                if (!(action instanceof Job_1["default"])) return [3 /*break*/, 7];
-                return [4 /*yield*/, handle(action, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                        return [2 /*return*/, action.handle(store.dispatch, store.getState)];
-                    }); }); })];
-            case 6:
-                result = _a.sent();
-                return [3 /*break*/, 8];
-            case 7:
-                result = next(action);
-                _a.label = 8;
-            case 8: return [2 /*return*/, result];
-        }
-    });
-}); }; }; });
+    return function (store) { return function (next) { return function (action) { return __awaiter(_this, void 0, void 0, function () {
+        var result, event_1, listeners, _loop_1, _i, listeners_1, listener;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!(action instanceof Event_1["default"])) return [3 /*break*/, 5];
+                    event_1 = action;
+                    result = next(__assign({}, event_1));
+                    listeners = event_1.getListeners(app);
+                    _loop_1 = function (listener) {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, handle(listener, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                                        return [2 /*return*/, listener.handle(event_1, store.dispatch, store.getState)];
+                                    }); }); })];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    };
+                    _i = 0, listeners_1 = listeners;
+                    _a.label = 1;
+                case 1:
+                    if (!(_i < listeners_1.length)) return [3 /*break*/, 4];
+                    listener = listeners_1[_i];
+                    return [5 /*yield**/, _loop_1(listener)];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3:
+                    _i++;
+                    return [3 /*break*/, 1];
+                case 4: return [3 /*break*/, 8];
+                case 5:
+                    if (!(action instanceof Job_1["default"])) return [3 /*break*/, 7];
+                    return [4 /*yield*/, handle(action, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            return [2 /*return*/, action.handle(store.dispatch, store.getState)];
+                        }); }); })];
+                case 6:
+                    result = _a.sent();
+                    return [3 /*break*/, 8];
+                case 7:
+                    result = next(action);
+                    _a.label = 8;
+                case 8: return [2 /*return*/, result];
+            }
+        });
+    }); }; }; };
+}
+exports.createHandlerMiddleware = createHandlerMiddleware;
 //# sourceMappingURL=handler.js.map

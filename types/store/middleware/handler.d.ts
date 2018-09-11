@@ -1,4 +1,4 @@
-import { Action, Dispatch, Store } from 'redux';
-declare const _default: (store: Store<any, Action<any>>) => (next: Dispatch<Action<any>>) => (action: Action<any>) => Promise<any>;
-export default _default;
+import { Middleware } from 'redux';
+import ContainerInterface from '../../app/Container/ContainerInterface';
+export declare function createHandlerMiddleware(app: ContainerInterface): Middleware;
 //# sourceMappingURL=handler.d.ts.map

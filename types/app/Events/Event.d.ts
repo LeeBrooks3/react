@@ -1,3 +1,4 @@
+import ContainerInterface from '../Container/ContainerInterface';
 import ListenerInterface from '../Listeners/ListenerInterface';
 import EventInterface from './EventInterface';
 export declare const PENDING: string;
@@ -17,6 +18,6 @@ export default class Event implements EventInterface {
      */
     constructor(type?: string, status?: string, props?: object);
     /** @inheritDoc */
-    getListeners(): ListenerInterface[];
+    getListeners(app?: ContainerInterface): ListenerInterface[];
 }
 //# sourceMappingURL=Event.d.ts.map
