@@ -8,11 +8,11 @@ export default abstract class Job<T = void, StateInterface = any> implements Job
      */
     readonly type: string;
     /**
-     * Whether the job should be ran synchronously.
+     * Whether the job should be ran asynchronously.
      *
      * @var {boolean}
      */
-    protected readonly await: boolean;
+    protected readonly queue: boolean;
     /**
      * Sets the job type from the constructor name.
      */
@@ -20,6 +20,6 @@ export default abstract class Job<T = void, StateInterface = any> implements Job
     /** @inheritDoc */
     abstract handle(dispatch: Dispatch, getState: () => StateInterface): Promise<T>;
     /** @inheritDoc */
-    shouldAwait(): boolean;
+    shouldQueue(): boolean;
 }
 //# sourceMappingURL=Job.d.ts.map

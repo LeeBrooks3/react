@@ -10,11 +10,11 @@ export default abstract class Job<T = void, StateInterface = any> implements Job
     public readonly type: string;
 
     /**
-     * Whether the job should be ran synchronously.
+     * Whether the job should be ran asynchronously.
      *
      * @var {boolean}
      */
-    protected readonly await: boolean = false;
+    protected readonly queue: boolean = false;
 
     /**
      * Sets the job type from the constructor name.
@@ -27,7 +27,7 @@ export default abstract class Job<T = void, StateInterface = any> implements Job
     public abstract async handle(dispatch: Dispatch, getState: () => StateInterface): Promise<T>;
 
     /** @inheritDoc */
-    public shouldAwait(): boolean {
-        return this.await;
+    public shouldQueue(): boolean {
+        return this.queue;
     }
 }

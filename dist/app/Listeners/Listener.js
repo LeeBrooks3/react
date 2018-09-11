@@ -6,16 +6,16 @@ var Listener = /** @class */ (function () {
      */
     function Listener() {
         /**
-         * Whether the listener should be ran synchronously.
+         * Whether the listener should be ran asynchronously.
          *
          * @var {boolean}
          */
-        this.await = false;
+        this.queue = false;
         this.type = this.constructor.name;
     }
     /** @inheritDoc */
-    Listener.prototype.shouldAwait = function () {
-        return this.await;
+    Listener.prototype.shouldQueue = function () {
+        return this.queue;
     };
     return Listener;
 }());

@@ -9,11 +9,11 @@ export default abstract class Listener<T = void, StateInterface = any> implement
      */
     readonly type: string;
     /**
-     * Whether the listener should be ran synchronously.
+     * Whether the listener should be ran asynchronously.
      *
      * @var {boolean}
      */
-    protected readonly await: boolean;
+    protected readonly queue: boolean;
     /**
      * Sets the listener type from the constructor name.
      */
@@ -21,6 +21,6 @@ export default abstract class Listener<T = void, StateInterface = any> implement
     /** @inheritDoc */
     abstract handle(event: EventInterface, dispatch: Dispatch, getState: () => StateInterface): Promise<T>;
     /** @inheritDoc */
-    shouldAwait(): boolean;
+    shouldQueue(): boolean;
 }
 //# sourceMappingURL=Listener.d.ts.map

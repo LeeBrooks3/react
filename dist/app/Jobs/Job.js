@@ -6,16 +6,16 @@ var Job = /** @class */ (function () {
      */
     function Job() {
         /**
-         * Whether the job should be ran synchronously.
+         * Whether the job should be ran asynchronously.
          *
          * @var {boolean}
          */
-        this.await = false;
+        this.queue = false;
         this.type = this.constructor.name;
     }
     /** @inheritDoc */
-    Job.prototype.shouldAwait = function () {
-        return this.await;
+    Job.prototype.shouldQueue = function () {
+        return this.queue;
     };
     return Job;
 }());

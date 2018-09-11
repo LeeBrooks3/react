@@ -1,7 +1,7 @@
 import { Action, Dispatch } from 'redux';
-import Awaitable from '../Utilities/Awaitable';
+import Queueable from '../Utilities/Queueable';
 
-export default interface JobInterface<T = any, StateInterface = any> extends Action, Awaitable {
+export default interface JobInterface<T = any, StateInterface = any> extends Action, Queueable {
     /**
      * Does the job.
      *

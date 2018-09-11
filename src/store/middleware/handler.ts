@@ -13,13 +13,13 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
 
     store.dispatch(new Event(type, PENDING));
 
-    if (action.shouldAwait()) {
+    if (!action.shouldQueue()) {
         try {
-            await result();
+            const value: any = await result();
 
             store.dispatch(new Event(type, RESOLVED));
 
-            return Promise.resolve();
+            return Promise.resolve(value);
         } catch (e) {
             store.dispatch(new Event(type, REJECTED));
 
@@ -28,11 +28,15 @@ async function handle(action: JobInterface | ListenerInterface, store: Store, re
     }
 
     return result()
-        .then(() => {
+        .then((value: any) => {
             store.dispatch(new Event(type, RESOLVED));
+
+            return value;
         })
         .catch((e: Error) => {
             store.dispatch(new Event(type, REJECTED));
+
+            return e;
         });
 }
 

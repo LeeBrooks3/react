@@ -11,11 +11,11 @@ export default abstract class Listener<T = void, StateInterface = any> implement
     public readonly type: string;
 
     /**
-     * Whether the listener should be ran synchronously.
+     * Whether the listener should be ran asynchronously.
      *
      * @var {boolean}
      */
-    protected readonly await: boolean = false;
+    protected readonly queue: boolean = false;
 
     /**
      * Sets the listener type from the constructor name.
@@ -28,7 +28,7 @@ export default abstract class Listener<T = void, StateInterface = any> implement
     public abstract async handle(event: EventInterface, dispatch: Dispatch, getState: () => StateInterface): Promise<T>; // tslint:disable-line max-line-length
 
     /** @inheritDoc */
-    public shouldAwait(): boolean {
-        return this.await;
+    public shouldQueue(): boolean {
+        return this.queue;
     }
 }
