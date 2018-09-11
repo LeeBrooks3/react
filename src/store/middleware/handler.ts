@@ -51,13 +51,13 @@ export function createHandlerMiddleware(app: ContainerInterface): Middleware {
                 ...event,
             });
 
-            const listeners: ListenerInterface[] = event.getListeners(app);
+            const listeners: ListenerInterface[] = event.getListeners();
 
             for (const listener of listeners) {
-                await handle(listener, store, async () => listener.handle(event, store.dispatch, store.getState));
+                await handle(listener, store, async () => listener.handle(event, app, store.dispatch, store.getState));
             }
         } else if (action instanceof Job) {
-            result = await handle(action, store, async () => action.handle(store.dispatch, store.getState));
+            result = await handle(action, store, async () => action.handle(app, store.dispatch, store.getState));
         } else {
             result = next(action);
         }

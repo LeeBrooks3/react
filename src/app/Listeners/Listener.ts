@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import ContainerInterface from '../Container/ContainerInterface';
 import EventInterface from '../Events/EventInterface';
 import ListenerInterface from './ListenerInterface';
 
@@ -21,7 +22,7 @@ export default abstract class Listener<T = void, S = any> implements ListenerInt
     }
 
     /** @inheritDoc */
-    public abstract async handle(event: EventInterface, dispatch: Dispatch, getState: () => S): Promise<T>;
+    public abstract async handle(event: EventInterface, app?: ContainerInterface, dispatch?: Dispatch, getState?: () => S): Promise<T>; // tslint:disable-line max-line-length
 
     /** @inheritDoc */
     public shouldQueue(): boolean {

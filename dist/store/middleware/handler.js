@@ -90,12 +90,12 @@ function createHandlerMiddleware(app) {
                     if (!(action instanceof Event_1["default"])) return [3 /*break*/, 5];
                     event_1 = action;
                     result = next(__assign({}, event_1));
-                    listeners = event_1.getListeners(app);
+                    listeners = event_1.getListeners();
                     _loop_1 = function (listener) {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, handle(listener, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                                        return [2 /*return*/, listener.handle(event_1, store.dispatch, store.getState)];
+                                        return [2 /*return*/, listener.handle(event_1, app, store.dispatch, store.getState)];
                                     }); }); })];
                                 case 1:
                                     _a.sent();
@@ -119,7 +119,7 @@ function createHandlerMiddleware(app) {
                 case 5:
                     if (!(action instanceof Job_1["default"])) return [3 /*break*/, 7];
                     return [4 /*yield*/, handle(action, store, function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, action.handle(store.dispatch, store.getState)];
+                            return [2 /*return*/, action.handle(app, store.dispatch, store.getState)];
                         }); }); })];
                 case 6:
                     result = _a.sent();

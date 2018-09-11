@@ -1,4 +1,3 @@
-import ContainerInterface from '../Container/ContainerInterface';
 import ListenerInterface from '../Listeners/ListenerInterface';
 import EventInterface from './EventInterface';
 
@@ -24,7 +23,7 @@ export default class Event implements EventInterface {
     }
 
     /** @inheritDoc */
-    public getListeners(app?: ContainerInterface): ListenerInterface[] {
+    public getListeners(): ListenerInterface[] {
         return [];
     }
 }

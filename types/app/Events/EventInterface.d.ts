@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import ContainerInterface from '../Container/ContainerInterface';
 import ListenerInterface from '../Listeners/ListenerInterface';
 export default interface EventInterface extends Action {
     /**
@@ -9,6 +8,6 @@ export default interface EventInterface extends Action {
     /**
      * Returns the listeners for the event.
      */
-    getListeners(app?: ContainerInterface): ListenerInterface[];
+    getListeners(): ListenerInterface[];
 }
 //# sourceMappingURL=EventInterface.d.ts.map

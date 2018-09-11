@@ -13,7 +13,7 @@ var Event = /** @class */ (function () {
         Object.assign(this, props);
     }
     /** @inheritDoc */
-    Event.prototype.getListeners = function (app) {
+    Event.prototype.getListeners = function () {
         return [];
     };
     return Event;

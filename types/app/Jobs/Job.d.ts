@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import ContainerInterface from '../Container/ContainerInterface';
 import JobInterface from './JobInterface';
 export default abstract class Job<T = void, S = any> implements JobInterface<T, S> {
     /**
@@ -14,7 +15,7 @@ export default abstract class Job<T = void, S = any> implements JobInterface<T, 
      */
     constructor();
     /** @inheritDoc */
-    abstract handle(dispatch: Dispatch, getState: () => S): Promise<T>;
+    abstract handle(app?: ContainerInterface, dispatch?: Dispatch, getState?: () => S): Promise<T>;
     /** @inheritDoc */
     shouldQueue(): boolean;
 }

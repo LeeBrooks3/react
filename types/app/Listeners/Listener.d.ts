@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import ContainerInterface from '../Container/ContainerInterface';
 import EventInterface from '../Events/EventInterface';
 import ListenerInterface from './ListenerInterface';
 export default abstract class Listener<T = void, S = any> implements ListenerInterface<T, S> {
@@ -15,7 +16,7 @@ export default abstract class Listener<T = void, S = any> implements ListenerInt
      */
     constructor();
     /** @inheritDoc */
-    abstract handle(event: EventInterface, dispatch: Dispatch, getState: () => S): Promise<T>;
+    abstract handle(event: EventInterface, app?: ContainerInterface, dispatch?: Dispatch, getState?: () => S): Promise<T>;
     /** @inheritDoc */
     shouldQueue(): boolean;
 }
