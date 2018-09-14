@@ -21,6 +21,15 @@ export default class RouteManager {
     }
 
     /**
+     * Gets the route at the given key.
+     */
+    public getRoute(key: string): Route {
+        return this.routes.find((route: Route) => {
+            return route.name === key;
+        });
+    }
+
+    /**
      * Transforms the routes from an object map to an array.
      */
     private setRoutes(routeMap: object): void {
