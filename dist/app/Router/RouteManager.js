@@ -7,6 +7,7 @@ var RouteManager = /** @class */ (function () {
      * Sets the routes.
      */
     function RouteManager(routes) {
+        this.routes = [];
         this.setRoutes(routes);
     }
     /**

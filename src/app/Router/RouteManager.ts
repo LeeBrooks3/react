@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import Route from './Route';
 
 export default class RouteManager {
-    public routes: Route[];
+    public routes: Route[] = [];
 
     /**
      * Sets the routes.
