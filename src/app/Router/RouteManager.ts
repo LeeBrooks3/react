@@ -7,7 +7,7 @@ export default class RouteManager {
     /**
      * Sets the routes.
      */
-    public constructor(routes: Route[]) {
+    public constructor(routes: object) {
         this.setRoutes(routes);
     }
 

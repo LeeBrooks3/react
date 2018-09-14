@@ -4,7 +4,7 @@ export default class RouteManager {
     /**
      * Sets the routes.
      */
-    constructor(routes: Route[]);
+    constructor(routes: object);
     /**
      * Gets the route at the given key.
      */
