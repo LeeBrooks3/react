@@ -10,6 +10,10 @@ export default class RouteManager {
      */
     getCurrentRoute(location: Location): Route;
     /**
+     * Gets the route at the given key.
+     */
+    getRoute(key: string): Route;
+    /**
      * Transforms the routes from an object map to an array.
      */
     private setRoutes;

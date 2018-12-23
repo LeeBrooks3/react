@@ -19,6 +19,14 @@ var RouteManager = /** @class */ (function () {
         });
     };
     /**
+     * Gets the route at the given key.
+     */
+    RouteManager.prototype.getRoute = function (key) {
+        return this.routes.find(function (route) {
+            return route.name === key;
+        });
+    };
+    /**
      * Transforms the routes from an object map to an array.
      */
     RouteManager.prototype.setRoutes = function (routeMap) {
